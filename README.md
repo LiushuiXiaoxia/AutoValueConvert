@@ -275,6 +275,8 @@ public abstract class User {
 
 # 版本更新
 
+* v0.2 去除groovy编写,减少插件体积大小
+
 * v0.1 支持基本转化功能
 
 
