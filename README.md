@@ -267,7 +267,7 @@ public abstract class User {
 
 # 插件下载
 
-[AutoValueConvert_v0.1.zip](https://github.com/LiushuiXiaoxia/AutoValueConvert/blob/master/AutoValueConvert_v0.1.zip)
+[AutoValueConvert_v0.2.jar](https://github.com/LiushuiXiaoxia/AutoValueConvert/blob/master/AutoValueConvert_v0.2.jar)
 
 # 后续优化
 
