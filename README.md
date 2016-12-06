@@ -10,7 +10,7 @@
 
 如，一个普通的Java Model:
 
-```xml
+```java
 public class User {
 
     public static final int STATIC_FIELD = 0;
@@ -205,7 +205,7 @@ public class User {
 
 转化过就是这样,基本满足AutoValue使用：
 
-```xml
+```java
 @AutoValue
 public abstract class User {
 
