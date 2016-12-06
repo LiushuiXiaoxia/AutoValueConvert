@@ -13,7 +13,7 @@
     ]]></description>
 
 	<change-notes><![CDATA[
-      .Basic operation.
+      .支持添加typeAdapter方法
     ]]>
 	</change-notes>
 

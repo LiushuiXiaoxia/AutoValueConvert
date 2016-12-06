@@ -129,8 +129,8 @@ class ModifySource {
         PsiElementFactory factory = PsiElementFactory.SERVICE.getInstance(project);
         // 添加importSerializedName,Nullable
         if (importList.findSingleImportStatement("SerializedName") == null) {
-            PsiElement serializedname = factory.createImportStatementOnDemand("com.google.gson.annotations");
-            importList.add(serializedname);
+            importList.add(factory.createImportStatementOnDemand("com.google.gson"));
+            importList.add(factory.createImportStatementOnDemand("com.google.gson.annotations"));
         }
         if (importList.findSingleImportStatement("Nullable") == null) {
             PsiElement nullable = factory.createImportStatementOnDemand("android.support.annotation");
@@ -177,11 +177,11 @@ class ModifySource {
         }
 
         // 添加typeAdapter方法
-        String string = "\n" +
-                "public static TypeAdapter<" + psiClass.getName() + ">typeAdapter(Gson gson) {\n" +
-                "    return new AutoValue_" + psiClass.getName() + ".GsonTypeAdapter(gson);\n" +
-                "}\n";
-//        psiClass.add(factory.createMethodFromText(string, null));
+        String string = "" +
+                "public static TypeAdapter<" + psiClass.getName() + "> typeAdapter(Gson gson) {" +
+                "    return new AutoValue_" + psiClass.getName() + ".GsonTypeAdapter(gson);" +
+                "}";
+        psiClass.add(factory.createMethodFromText(string, null));
     }
 
     private static List<String> getMethodNames(String fieldName) {
