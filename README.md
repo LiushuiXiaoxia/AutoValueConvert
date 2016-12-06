@@ -267,13 +267,15 @@ public abstract class User {
 
 # 插件下载
 
-[AutoValueConvert_v0.3.jar](https://github.com/LiushuiXiaoxia/AutoValueConvert/blob/master/AutoValueConvert_v0.3.jar?raw=true)
+[AutoValueConvert_v0.4.jar](https://github.com/LiushuiXiaoxia/AutoValueConvert/blob/master/AutoValueConvert_v0.4.jar?raw=true)
 
 # 后续优化
 
 * 暂时没有
 
 # 版本更新
+
+* v0.4 修复bug
 
 * v0.3 支持添加typeAdapter方法
 

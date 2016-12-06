@@ -129,8 +129,10 @@ class ModifySource {
         PsiElementFactory factory = PsiElementFactory.SERVICE.getInstance(project);
         // 添加importSerializedName,Nullable
         if (importList.findSingleImportStatement("SerializedName") == null) {
-            importList.add(factory.createImportStatementOnDemand("com.google.gson"));
             importList.add(factory.createImportStatementOnDemand("com.google.gson.annotations"));
+        }
+        if (importList.findSingleImportStatement("Gson") == null) {
+            importList.add(factory.createImportStatementOnDemand("com.google.gson"));
         }
         if (importList.findSingleImportStatement("Nullable") == null) {
             PsiElement nullable = factory.createImportStatementOnDemand("android.support.annotation");
