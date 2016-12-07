@@ -27,7 +27,7 @@ public class ConvertAction extends AnAction {
         e.getPresentation().setVisible(visible);
     }
 
-    static boolean isFileOk(AnActionEvent e) {
+    private static boolean isFileOk(AnActionEvent e) {
         VirtualFile virtualFile = e.getData(PlatformDataKeys.VIRTUAL_FILE);
         PsiFile psiFile = e.getData(LangDataKeys.PSI_FILE);
         boolean isVFOk = virtualFile != null && virtualFile.getName().toLowerCase().endsWith("java");
@@ -46,7 +46,7 @@ public class ConvertAction extends AnAction {
         }
     }
 
-    private static void doAction(AnActionEvent event) throws Exception {
+    private void doAction(AnActionEvent event) throws Exception {
         String msg = null;
         for (int i = 0; i < 1; i++) {
             PsiFile psiFile = event.getData(LangDataKeys.PSI_FILE);
@@ -70,17 +70,21 @@ public class ConvertAction extends AnAction {
 
             for (PsiElement element : children) {
                 if (element instanceof PsiClass) {
-                    new WriteCommandAction.Simple<Boolean>(project, javaFile) {
-                        @Override
-                        protected void run() throws Throwable {
-                            new ModifySource(javaFile, (PsiClass) element, project).modify();
-                        }
-                    }.execute();
+                    modify(project, javaFile, element);
                 }
             }
         }
         if (msg != null && msg.length() != 0) {
             throw new RuntimeException(msg);
         }
+    }
+
+    protected void modify(Project project, PsiJavaFile javaFile, PsiElement element) {
+        new WriteCommandAction.Simple<Boolean>(project, javaFile) {
+            @Override
+            protected void run() throws Throwable {
+                new ModifySource(javaFile, (PsiClass) element, project).modify();
+            }
+        }.execute();
     }
 }

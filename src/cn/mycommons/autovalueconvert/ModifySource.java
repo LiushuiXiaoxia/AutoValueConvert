@@ -42,12 +42,18 @@ class ModifySource {
     private PsiClass psiClass;
     private Project project;
     private List<PsiField> fields;
+    private boolean getterStyleMethod; // getter方式的命名
 
     ModifySource(PsiJavaFile javaFile, PsiClass psiClass, Project project) {
+        this(javaFile, psiClass, project, false);
+    }
+
+    public ModifySource(PsiJavaFile javaFile, PsiClass psiClass, Project project, boolean getterStyleMethod) {
         this.javaFile = javaFile;
         this.psiClass = psiClass;
         this.project = project;
         fields = new ArrayList<>();
+        this.getterStyleMethod = getterStyleMethod;
     }
 
     void modify() {
@@ -158,8 +164,24 @@ class ModifySource {
                 fieldAnnotationStr.append(annotation.getText()).append("\n");
             }
 
+
+            String name = field.getName();
+            if (name != null && name.length() > 0 && getterStyleMethod) {
+                // String ok;  --> String getOk();
+                // boolean ok;  --> boolean isOk();
+                // boolean isOk;  --> boolean isOk();
+                
+                if ("boolean".equals(field.getType().getCanonicalText())) { // boolean 类型
+                    if (!name.startsWith("is")) {
+                        name = "is" + name.substring(0, 1).toUpperCase() + name.substring(1);
+                    }
+                } else {
+                    name = "get" + name.substring(0, 1).toUpperCase() + name.substring(1);
+                }
+            }
+
             String format = "public abstract %s %s();";
-            String string = String.format(format, field.getType().getCanonicalText(), field.getName());
+            String string = String.format(format, field.getType().getCanonicalText(), name);
             PsiMethod method = factory.createMethodFromText(fieldAnnotationStr + string, null);
 
             // 是否有@SerializedName,没有则添加

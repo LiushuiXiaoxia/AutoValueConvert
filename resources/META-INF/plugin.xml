@@ -1,7 +1,7 @@
 <idea-plugin version="2">
 	<id>cn.mycommons.autovalueconvert</id>
 	<name>AutovalueConvert</name>
-	<version>0.4</version>
+	<version>0.5</version>
 	<vendor email="xiaqiulei@126.com"
 		url="https://github.com/LiushuiXiaoxia/AutoValueConvert">LiushuiXiaoxia
 	</vendor>
@@ -35,6 +35,16 @@
 		<action id="ConvertAction"
 			class="cn.mycommons.autovalueconvert.ConvertAction"
 			text="Autovalue convert"
+			description="Autovalue convert">
+			<add-to-group group-id="CodeMenu"
+				anchor="last" />
+			<add-to-group group-id="GenerateGroup"
+				anchor="first" />
+		</action>
+
+		<action id="ConvertWithGetterAction"
+			class="cn.mycommons.autovalueconvert.ConvertWithGetterAction"
+			text="Autovalue convert method not change"
 			description="Autovalue convert">
 			<add-to-group group-id="CodeMenu"
 				anchor="last" />

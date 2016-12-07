@@ -267,13 +267,15 @@ public abstract class User {
 
 # 插件下载
 
-[AutoValueConvert_v0.4.jar](https://github.com/LiushuiXiaoxia/AutoValueConvert/blob/master/AutoValueConvert_v0.4.jar?raw=true)
+[AutoValueConvert_v0.5.jar](https://github.com/LiushuiXiaoxia/AutoValueConvert/blob/master/AutoValueConvert_v0.5.jar?raw=true)
 
 # 后续优化
 
 * 暂时没有
 
 # 版本更新
+
+* v0.5 提供getter方式的方法命名
 
 * v0.4 修复bug
 
