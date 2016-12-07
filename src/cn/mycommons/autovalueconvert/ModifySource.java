@@ -193,7 +193,8 @@ class ModifySource {
                 "set" + first + second,
                 "get" + first + second,
                 "is" + first + second,
-                fieldName.startsWith("is") ? fieldName : ""
+                fieldName.startsWith("is") ? fieldName : null,
+                fieldName.startsWith("is") ? "set" + fieldName.substring(2) : null
         );
     }
 }
