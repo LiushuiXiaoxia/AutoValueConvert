@@ -8,6 +8,8 @@
 
 关于AutoValue如何使用, 参见这里[Android Model正确使用姿势——AutoValue](https://github.com/LiushuiXiaoxia/AutoValueDemo) 。
 
+![](doc/1.gif)
+
 如，一个普通的Java Model:
 
 ```java
@@ -260,10 +262,6 @@ public abstract class User {
     public abstract String[] arrayField();
 }
 ```
-
-# 操作示范
-
-![](doc/1.gif)
 
 # 插件下载
 
