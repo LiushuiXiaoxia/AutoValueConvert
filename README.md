@@ -265,13 +265,15 @@ public abstract class User {
 
 # 插件下载
 
-[AutoValueConvert_v0.5.jar](https://github.com/LiushuiXiaoxia/AutoValueConvert/blob/master/AutoValueConvert_v0.5.jar?raw=true)
+[AutoValueConvert_v0.6.zip](https://github.com/LiushuiXiaoxia/AutoValueConvert/blob/master/AutoValueConvert_v0.6.zip?raw=true)
 
 # 后续优化
 
 * 暂时没有
 
 # 版本更新
+
+* v0.6 修复少量bug,使用Kotlin语言实现
 
 * v0.5 提供getter方式的方法命名
 
