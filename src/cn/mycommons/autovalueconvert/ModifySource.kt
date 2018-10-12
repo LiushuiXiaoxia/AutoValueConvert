@@ -79,7 +79,7 @@ internal class ModifySource(
                 for (field in fields) {
                     val fieldName = field.name
 
-                    if (fieldName == null || fieldName.isEmpty()) {
+                    if (fieldName.isEmpty()) {
                         continue
                     }
                     if (getMethodNames(fieldName).contains(method.name)) {
@@ -157,7 +157,7 @@ internal class ModifySource(
 
         // 添加typeAdapter方法
         val clzName = psiClass.name
-        val string: String = "public static TypeAdapter<$clzName> typeAdapter(Gson gson) {return new AutoValue_$clzName.GsonTypeAdapter(gson);}"
+        val string = "public static TypeAdapter<$clzName> typeAdapter(Gson gson) {return new AutoValue_$clzName.GsonTypeAdapter(gson);}"
         psiClass.add(factory.createMethodFromText(string, null))
     }
 
@@ -175,7 +175,7 @@ internal class ModifySource(
 
     private fun genMethodName(field: PsiField): String? {
         var name = field.name
-        if (name != null && name.isNotEmpty() && getterStyleMethod) {
+        if (name.isNotEmpty() && getterStyleMethod) {
             // String ok;  --> String getOk();
             // boolean ok;  --> boolean isOk();
             // boolean isOk;  --> boolean isOk();
