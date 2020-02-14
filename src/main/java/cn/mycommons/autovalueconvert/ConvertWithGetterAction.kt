@@ -12,11 +12,8 @@ import com.intellij.psi.PsiJavaFile
 open class ConvertWithGetterAction : ConvertAction() {
 
     override fun modify(project: Project, javaFile: PsiJavaFile, clazz: PsiClass) {
-        object : WriteCommandAction.Simple<Boolean>(project, javaFile) {
-            @Throws(Throwable::class)
-            override fun run() {
-                ModifySource(javaFile, clazz, project, true).modify()
-            }
-        }.execute()
+        WriteCommandAction.runWriteCommandAction(project) {
+            ModifySource(javaFile, clazz, project, true).modify()
+        }
     }
 }

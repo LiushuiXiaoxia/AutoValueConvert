@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AutoValueConvert.iml" filepath="$PROJECT_DIR$/AutoValueConvert.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/AutoValueConvert.iml" filepath="$PROJECT_DIR$/.idea/AutoValueConvert.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AutoValueConvert.main.iml" filepath="$PROJECT_DIR$/.idea/modules/AutoValueConvert.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AutoValueConvert.test.iml" filepath="$PROJECT_DIR$/.idea/modules/AutoValueConvert.test.iml" />
     </modules>
   </component>
 </project>

@@ -17,11 +17,9 @@ import com.intellij.psi.PsiJavaFile
  */
 open class ConvertAction : AnAction() {
 
-    override fun update(event: AnActionEvent?) {
+    override fun update(event: AnActionEvent) {
         super.update(event)
-        if (event != null) {
-            event.presentation.isVisible = isFileOk(event)
-        }
+        event.presentation.isVisible = isFileOk(event)
     }
 
     private fun isFileOk(e: AnActionEvent): Boolean {
@@ -59,8 +57,8 @@ open class ConvertAction : AnAction() {
             val project = event.getData(PlatformDataKeys.PROJECT) ?: break
 
             psiFile.children
-                    .filter { it is PsiClass }
-                    .forEach { modify(project, psiFile, it as PsiClass) }
+                    .filterIsInstance<PsiClass>()
+                    .forEach { modify(project, psiFile, it) }
         }
         if (msg != null && msg.isNotEmpty()) {
             throw RuntimeException(msg)
@@ -68,11 +66,9 @@ open class ConvertAction : AnAction() {
     }
 
     protected open fun modify(project: Project, javaFile: PsiJavaFile, clazz: PsiClass) {
-        object : WriteCommandAction.Simple<Boolean>(project, javaFile) {
-            @Throws(Throwable::class)
-            override fun run() {
-                ModifySource(javaFile, clazz, project, false).modify()
-            }
-        }.execute()
+
+        WriteCommandAction.runWriteCommandAction(project) {
+            ModifySource(javaFile, clazz, project, false).modify()
+        }
     }
 }

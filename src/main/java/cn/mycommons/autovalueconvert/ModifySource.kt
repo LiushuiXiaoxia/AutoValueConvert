@@ -12,29 +12,31 @@ import java.util.*
  * Created by xiaqiulei on 2016-12-06.
  */
 
-val removeMethodNames = arrayOf(
-        "equals",
-        "hashCode",
-        "toString"
-)
-
-val ignoreTypes = arrayOf(
-        "byte",
-        "short",
-        "int",
-        "long",
-        "char",
-        "float",
-        "double",
-        "boolean"
-)
-
-internal class ModifySource(
+class ModifySource(
         private val javaFile: PsiJavaFile,
         private val psiClass: PsiClass,
         private val project: Project,
         // getter方式的命名
         private val getterStyleMethod: Boolean) {
+
+    companion object {
+        private val removeMethodNames = arrayOf(
+                "equals",
+                "hashCode",
+                "toString"
+        )
+
+        private val ignoreTypes = arrayOf(
+                "byte",
+                "short",
+                "int",
+                "long",
+                "char",
+                "float",
+                "double",
+                "boolean"
+        )
+    }
 
     private val fields: ArrayList<PsiField> = ArrayList()
 
@@ -67,7 +69,7 @@ internal class ModifySource(
             }
         }
 
-        return !fields.isEmpty()
+        return fields.isNotEmpty()
     }
 
     private fun removeMethod() {
@@ -106,7 +108,7 @@ internal class ModifySource(
 
         val importList = javaFile.importList ?: return
 
-        val factory = PsiElementFactory.SERVICE.getInstance(project)
+        val factory = PsiElementFactory.getInstance(project)
 
         // 添加importSerializedName,Nullable
         if (importList.findSingleImportStatement("SerializedName") == null) {
@@ -124,7 +126,7 @@ internal class ModifySource(
     }
 
     private fun addMethod() {
-        val factory = PsiElementFactory.SERVICE.getInstance(project)
+        val factory = PsiElementFactory.getInstance(project)
 
         for (field in fields) {
             val fieldAnnotationStr = StringBuilder()
@@ -164,12 +166,12 @@ internal class ModifySource(
     private fun getMethodNames(fieldName: String): List<String> {
         val first = fieldName.substring(0, 1).toUpperCase()
         val second = fieldName.substring(1)
-        return Arrays.asList<String>(
+        return listOf(
                 "set$first$second",
                 "get$first$second",
                 "is$first$second",
-                if (fieldName.startsWith("is")) fieldName else null,
-                if (fieldName.startsWith("is")) "set${fieldName.substring(2)}" else null
+                if (fieldName.startsWith("is")) fieldName else "",
+                if (fieldName.startsWith("is")) "set${fieldName.substring(2)}" else ""
         )
     }
 

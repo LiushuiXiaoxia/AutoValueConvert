@@ -2,6 +2,8 @@
 
 ---
 
+![Gradle CI](https://github.com/LiushuiXiaoxia/AutoValueConvert/workflows/Gradle%20CI/badge.svg)
+
 # 简介
 
 一个简单的Android Studio插件 ，把一个普通的Java Model转化成AutoValue的形式。

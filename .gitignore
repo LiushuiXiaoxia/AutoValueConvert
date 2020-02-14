@@ -46,3 +46,8 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+.idea
+myCustom-sandbox
+sandbox
+.gradle
+build
