@@ -53,7 +53,7 @@ dependencies {
 }
 
 intellij {
-    pluginName 'DatabindingConvert'
+    pluginName 'AutoValueConvert'
     version '2019.3'
     plugins = ['java', 'Kotlin']
     updateSinceUntilBuild false

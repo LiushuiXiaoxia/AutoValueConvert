@@ -17,9 +17,3 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew clean assemble -PGITHUB_CI=false
-        env:
-          intellijPublishToken: ${{ secrets.intellijPublishToken }}
-      - name: Upload plugin
-        run: sh upload.sh
-        env:
-          intellijPublishToken: ${{ secrets.intellijPublishToken }}
